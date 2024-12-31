@@ -7,19 +7,22 @@
 
 import UIKit
 
-class UserDetailsViewController: UIViewController {
-    let user: User
-    init(user: User) {
-        self.user = user
-        super.init(nibName: nil, bundle: nil)
-    }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+class UserDetailsViewController: UIViewController, CustomNavigationBarDelegate {
+    func didTapLeftButton() {
+        self.navigationController?.popToRootViewController(animated: false)
     }
     
+    func didTapRightButton() {
+        //If required
+    }
+    
+    var user: User!
+    @IBOutlet weak var customNavBar: CustomNavigationView!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        customNavBar.configure(user.name)
+        customNavBar.delegate = self
     }
     func setupUI() {
         view.backgroundColor = .white

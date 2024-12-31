@@ -9,11 +9,19 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
+    var window: UIWindow?
+    var navigationController: UINavigationController?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        // Create the initial view controller (Navigation Controller)
+        let userViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "UserListViewController")
+        let navigationController = UINavigationController(rootViewController: userViewController)
+        
+        // Set the root view controller of the window to the navigation controller
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
         return true
     }
 
